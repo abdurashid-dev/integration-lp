@@ -14,3 +14,12 @@
         </p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{route('admin.technologies.index')}}"
+       class="nav-link @if (request()->is('admin/technologies*')) active @endif">
+        <i class="nav-icon fas fa-terminal"></i>
+        <p>
+            Technologies
+        </p>
+    </a>
+</li>

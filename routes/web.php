@@ -43,4 +43,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/password/index', [AdminController::class, 'passwordChange'])->name('password.change.index');
 //Package
     Route::resource('/packagies', \App\Http\Controllers\PackageController::class);
+//Technologies
+    Route::resource('/technologies', \App\Http\Controllers\TechnologyController::class);
 });
