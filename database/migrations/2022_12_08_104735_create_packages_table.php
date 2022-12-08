@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->integer('price')->default(0);
             $table->enum('type', ['free', 'premium'])->default('free');
             $table->string('link')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class PackageTable extends Component
 
     public function render()
     {
-        $packagies = Package::search($this->search)->latest('id')->paginate(20);
+        $packagies = Package::search($this->search)->where('status', 1)->latest('id')->paginate(20);
         return view('livewire.package.package-table', compact('packagies'));
     }
 }
