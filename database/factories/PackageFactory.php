@@ -17,7 +17,10 @@ class PackageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence,
+            'description' => $this->faker->text,
+            'price' => $this->faker->numberBetween(0, 1000000),
+            'type' => $this->faker->randomElement(['free', 'premium'])
         ];
     }
 }

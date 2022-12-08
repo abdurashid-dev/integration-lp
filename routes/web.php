@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,4 +41,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/changeData', [AdminController::class, 'data'])->name('data');
     Route::get('/password/index', [AdminController::class, 'password'])->name('profile.password');
     Route::post('/password/index', [AdminController::class, 'passwordChange'])->name('password.change.index');
+//Package
+    Route::resource('/packagies', \App\Http\Controllers\PackageController::class);
 });
