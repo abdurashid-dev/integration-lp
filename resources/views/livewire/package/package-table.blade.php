@@ -9,6 +9,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Type</th>
                     <th>Actions</th>
                 </tr>
                 @forelse($packagies as $package)
@@ -16,6 +17,7 @@
                         <td>{{$package->id}}</td>
                         <td>{{$package->name}}</td>
                         <td>{{$package->price}}</td>
+                        <td>{{$package->type}}</td>
                         <td>Actions</td>
                     </tr>
                 @empty
