@@ -14,6 +14,12 @@ class PackageController extends AbstractController
         $this->service = new PackageService();
     }
 
+    public function show($id)
+    {
+        $item = $this->service->show($id);
+        return view('admin.packages.show', compact('item'));
+    }
+
     public function create()
     {
         [$technologies, $platforms, $item] = $this->service->create();

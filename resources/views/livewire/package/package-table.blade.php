@@ -18,7 +18,9 @@
                         <td>{{$package->name}}</td>
                         <td>{{$package->price}}</td>
                         <td>{{$package->type}}</td>
-                        <td>Actions</td>
+                        <td><a href="{{route('admin.packages.show', $package->id)}}" class="btn btn-primary"><i
+                                    class="fas fa-eye"></i> Show</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>

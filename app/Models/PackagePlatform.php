@@ -10,4 +10,9 @@ class PackagePlatform extends Model
     use HasFactory;
 
     protected $fillable = ['package_id', 'platform_id'];
+
+    public function platform()
+    {
+        return $this->belongsTo(Platform::class);
+    }
 }

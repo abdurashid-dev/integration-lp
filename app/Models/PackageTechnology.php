@@ -10,4 +10,9 @@ class PackageTechnology extends Model
     use HasFactory;
 
     protected $fillable = ['package_id', 'technology_id'];
+
+    public function technology()
+    {
+        return $this->belongsTo(Technology::class);
+    }
 }

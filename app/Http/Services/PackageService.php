@@ -13,6 +13,11 @@ class PackageService extends AbstractService
 {
     protected $model = Package::class;
 
+    public function show($id)
+    {
+        return $this->model::where('id', $id)->with('technologies', 'platforms', 'images')->first();
+    }
+
     public function create()
     {
         $technologies = Technology::all();

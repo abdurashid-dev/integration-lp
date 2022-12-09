@@ -18,4 +18,19 @@ class Package extends Model
             : static::query()->where('name', 'like', '%' . $search . '%')
                 ->orWhere('price', 'like', '%' . $search . '%');
     }
+
+    public function platforms()
+    {
+        return $this->hasMany(PackagePlatform::class);
+    }
+
+    public function technologies()
+    {
+        return $this->hasMany(PackageTechnology::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PackageImage::class);
+    }
 }
