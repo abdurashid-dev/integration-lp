@@ -13,4 +13,19 @@ class PackageController extends AbstractController
     {
         $this->service = new PackageService();
     }
+
+    public function store()
+    {
+        $data = $this->validate(request(), [
+            'name' => 'required',
+            'price' => 'sometimes',
+            'description' => 'sometimes',
+            'link' => 'sometimes',
+            'type' => 'required',
+            'status' => 'sometimes',
+            'images' => 'sometimes'
+        ]);
+        $this->service->store($data);
+        return redirect()->route('admin.packages.index')->with('success', 'Created!');
+    }
 }
