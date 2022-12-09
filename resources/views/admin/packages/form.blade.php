@@ -12,6 +12,28 @@
             <input type="number" class="form-control" id="priceInput" name="price"
                    value="{{old('price') ?? $item->price}}">
             @error('price')
+            {{--            <span class="text-danger">{{$message}}</span>--}}
+            @enderror
+        </div>
+        <div class="col-md-6 col-sm-12 mb-3">
+            <label for="technologies" class="form-label">Technologies</label>
+            <select name="technologies[]" id="technologies" class="form-control" multiple="multiple">
+                @foreach($technologies as $technology)
+                    <option value="{{$technology->id}}">{{$technology->name}}</option>
+                @endforeach
+            </select>
+            @error('technologies')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 col-sm-12 mb-3">
+            <label for="platforms" class="form-label">Platforms</label>
+            <select name="platforms[]" id="platforms" class="form-control" multiple="multiple">
+                @foreach($platforms as $platform)
+                    <option value="{{$platform->id}}">{{$platform->name}}</option>
+                @endforeach
+            </select>
+            @error('platforms')
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
