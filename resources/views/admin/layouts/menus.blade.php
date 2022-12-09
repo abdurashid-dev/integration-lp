@@ -7,7 +7,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{route('admin.packagies.index')}}" class="nav-link @if (request()->is('admin/packagies*')) active @endif">
+    <a href="{{route('admin.packages.index')}}" class="nav-link @if (request()->is('admin/packages*')) active @endif">
         <i class="nav-icon fas fa-box-open"></i>
         <p>
             Packagies
