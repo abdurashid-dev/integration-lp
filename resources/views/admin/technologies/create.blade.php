@@ -9,7 +9,7 @@
         <div class="card-body">
             <form action="{{route('admin.technologies.store')}}" method="POST">
                 @csrf
-                @include('admin.technology.form')
+                @include('admin.technologies.form')
             </form>
         </div>
     </div>

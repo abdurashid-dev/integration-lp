@@ -1,13 +1,13 @@
 <div class="mb-3">
     <label for="nameInput" class="form-label">Name</label>
-    <input type="text" class="form-control" id="nameInput" name="name" value="{{old('name') ?? $technology->name}}">
+    <input type="text" class="form-control" id="nameInput" name="name" value="{{old('name') ?? $item->name}}">
 </div>
 @error('name')
 <span class="text-danger">{{$message}}</span>
 @enderror
 <div class="mb-3">
     <label for="linkInput" class="form-label">Link</label>
-    <input type="text" class="form-control" id="linkInput" name="link" value="{{old('link') ?? $technology->link}}">
+    <input type="text" class="form-control" id="linkInput" name="link" value="{{old('link') ?? $item->link}}">
 </div>
 @error('link')
 <span class="text-danger">{{$message}}</span>
