@@ -6,7 +6,6 @@ class AbstractController extends Controller
 {
     protected $dir;
     protected $service;
-    protected $requestClass;
 
     public function index()
     {

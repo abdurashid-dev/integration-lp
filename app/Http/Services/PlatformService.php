@@ -3,11 +3,11 @@
 namespace App\Http\Services;
 
 use App\Fields\TextField;
-use App\Models\Technology;
+use App\Models\Platform;
 
-class TechnologyService extends AbstractService
+class PlatformService extends AbstractService
 {
-    protected $model = Technology::class;
+    protected $model = Platform::class;
 
     public function getFields()
     {

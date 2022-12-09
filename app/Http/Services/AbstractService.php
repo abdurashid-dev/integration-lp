@@ -27,7 +27,7 @@ class AbstractService
         }
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            dd($validator);
+            dd($validator->errors());
         }
         $data = $validator->validated();
         $object = new $this->model;
@@ -52,7 +52,7 @@ class AbstractService
         }
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            dd($validator->errors());
         }
         $data = $validator->validated();
         foreach ($fields as $field) {

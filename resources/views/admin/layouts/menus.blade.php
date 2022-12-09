@@ -23,3 +23,12 @@
         </p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{route('admin.platforms.index')}}"
+       class="nav-link @if (request()->is('admin/platforms*')) active @endif">
+        <i class="nav-icon fas fa-parking"></i>
+        <p>
+            Platforms
+        </p>
+    </a>
+</li>

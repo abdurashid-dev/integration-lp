@@ -45,4 +45,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('/packagies', \App\Http\Controllers\PackageController::class);
 //Technologies
     Route::resource('/technologies', \App\Http\Controllers\TechnologyController::class);
+//Platforms
+    Route::resource('/platforms', \App\Http\Controllers\PlatformController::class);
 });
