@@ -42,4 +42,27 @@ class PackageController extends AbstractController
         $this->service->store($data);
         return redirect()->route('admin.packages.index')->with('success', 'Created!');
     }
+
+    public function edit($id)
+    {
+        [$technologies, $platforms, $item] = $this->service->edit($id);
+        return view('admin.packages.edit', compact('item', 'technologies', 'platforms'));
+    }
+
+    public function update($id)
+    {
+        $data = $this->validate(request(), [
+            'name' => 'required',
+            'price' => 'sometimes',
+            'description' => 'sometimes',
+            'link' => 'sometimes',
+            'type' => 'required',
+            'status' => 'sometimes',
+            'images' => 'sometimes',
+            'technologies' => 'required',
+            'platforms' => 'required',
+        ]);
+        $this->service->update($data, $id);
+        return redirect()->route('admin.packages.index')->with('success', 'Updated!');
+    }
 }

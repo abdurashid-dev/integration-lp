@@ -15,7 +15,8 @@ class Package extends Model
     {
         return empty($search)
             ? static::query()
-            : static::query()->where('name', 'like', '%' . $search . '%')
+            : static::query()->where('id', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%')
                 ->orWhere('price', 'like', '%' . $search . '%');
     }
 

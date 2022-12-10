@@ -56,4 +56,53 @@ class PackageService extends AbstractService
             }
         }
     }
+
+    public function update($data, $id)
+    {
+//        dd($data);
+        $model = $this->show($id);
+        $model->update($data);
+        PackageTechnology::where('package_id', $id)->delete();
+        foreach ($data['technologies'] as $technology) {
+            PackageTechnology::create([
+                'package_id' => $model->id,
+                'technology_id' => $technology
+            ]);
+        }
+        PackagePlatform::where('package_id', $id)->delete();
+        foreach ($data['platforms'] as $platform) {
+            PackagePlatform::create([
+                'package_id' => $model->id,
+                'platform_id' => $platform
+            ]);
+        }
+        if (isset($data['images'])) {
+            $path = 'uploads';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            foreach ($model->images as $image) {
+                if (file_exists($image->image)) {
+                    unlink($image->image);
+                }
+            }
+            PackageImage::where('package_id', $id)->delete();
+            foreach ($data['images'] as $image) {
+                $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($path . '/'), $imageName);
+                PackageImage::create([
+                    'package_id' => $model->id,
+                    'image' => $path . '/' . $imageName
+                ]);
+            }
+        }
+    }
+
+    public function edit($id)
+    {
+        $item = $this->show($id);
+        $technologies = Technology::all();
+        $platforms = Platform::all();
+        return [$technologies, $platforms, $item];
+    }
 }

@@ -20,6 +20,8 @@
                         <td>{{$package->type}}</td>
                         <td><a href="{{route('admin.packages.show', $package->id)}}" class="btn btn-primary"><i
                                     class="fas fa-eye"></i> Show</a>
+                            <a href="{{route('admin.packages.edit', $package->id)}}" class="btn btn-success"><i
+                                    class="fas fa-pencil-alt"></i> Edit</a>
                         </td>
                     </tr>
                 @empty
