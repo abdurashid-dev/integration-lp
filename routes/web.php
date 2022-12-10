@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('welcome');
+Route::get('/package/{id}', [\App\Http\Controllers\FrontendController::class, 'package'])->name('package');
 
 //Jetstream
 Route::middleware([

@@ -30,7 +30,7 @@ class PackageController extends AbstractController
     {
         $data = $this->validate(request(), [
             'name' => 'required',
-            'price' => 'sometimes',
+            'price' => 'required',
             'description' => 'sometimes',
             'link' => 'sometimes',
             'type' => 'required',
@@ -53,7 +53,7 @@ class PackageController extends AbstractController
     {
         $data = $this->validate(request(), [
             'name' => 'required',
-            'price' => 'sometimes',
+            'price' => 'required',
             'description' => 'sometimes',
             'link' => 'sometimes',
             'type' => 'required',
