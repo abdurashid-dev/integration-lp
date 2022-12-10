@@ -22,6 +22,14 @@
                                     class="fas fa-eye"></i> Show</a>
                             <a href="{{route('admin.packages.edit', $package->id)}}" class="btn btn-success"><i
                                     class="fas fa-pencil-alt"></i> Edit</a>
+                            <form action="{{route('admin.packages.destroy', $package->id)}}" method="POST"
+                                  class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty

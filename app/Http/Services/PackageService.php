@@ -105,4 +105,18 @@ class PackageService extends AbstractService
         $platforms = Platform::all();
         return [$technologies, $platforms, $item];
     }
+
+    public function destroy($id)
+    {
+        $item = $this->show($id);
+        PackagePlatform::where('package_id', $id)->delete();
+        PackageTechnology::where('package_id', $id)->delete();
+        foreach ($item->images as $image) {
+            if (file_exists($image->image)) {
+                unlink($image->image);
+            }
+        }
+        PackageImage::where('package_id', $id)->delete();
+        $item->delete();
+    }
 }
