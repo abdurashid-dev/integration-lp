@@ -12,4 +12,11 @@
 @error('link')
 <span class="text-danger">{{$message}}</span>
 @enderror
+<div class="mb-3">
+    <label for="imageInput" class="form-label">Image</label>
+    <input type="file" class="form-control" id="imageInput" name="image">
+</div>
+@error('image')
+<span class="text-danger">{{$message}}</span>
+@enderror
 <button type="submit" class="btn btn-primary float-right">Save!</button>

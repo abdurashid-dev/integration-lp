@@ -7,7 +7,7 @@
                parent-route="admin.platforms.index"/>
     <div class="card">
         <div class="card-body">
-            <form action="{{route('admin.platforms.update', $item)}}" method="POST">
+            <form action="{{route('admin.platforms.update', $item)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 @include('admin.platforms.form')
