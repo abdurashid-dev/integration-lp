@@ -9,12 +9,15 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Link</th>
+                    <td>Image</td>
                     <th>Actions</th>
                 </tr>
                 @forelse($platforms as $platform)
                     <tr>
                         <td>{{$platform->id}}</td>
                         <td>{{$platform->name}}</td>
+                        <td><img src="{{asset($platform->image)}}" alt="logo" class="img-responsive img-thumbnail"
+                                 style="width: 100px; height: 100px"></td>
                         <td><a href="{{$platform->link}}">{{ $platform->link}}</a></td>
                         <td>
                             <div class="d-flex">

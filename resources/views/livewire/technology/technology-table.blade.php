@@ -9,6 +9,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Link</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
                 @forelse($technologies as $technology)
@@ -16,6 +17,8 @@
                         <td>{{$technology->id}}</td>
                         <td>{{$technology->name}}</td>
                         <td><a href="{{$technology->link}}">{{ $technology->link}}</a></td>
+                        <td><img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
+                                 style="width: 100px; height: 100px"></td>
                         <td>
                             <div class="d-flex">
                                 <a href="{{route('admin.technologies.edit', $technology->id)}}" class="btn btn-success"><i
