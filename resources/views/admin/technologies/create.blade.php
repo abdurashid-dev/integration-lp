@@ -7,7 +7,7 @@
                parent-route="admin.technologies.index"/>
     <div class="card">
         <div class="card-body">
-            <form action="{{route('admin.technologies.store')}}" method="POST">
+            <form action="{{route('admin.technologies.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include('admin.technologies.form')
             </form>
