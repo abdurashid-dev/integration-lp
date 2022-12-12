@@ -62,8 +62,9 @@
         </div>
         <div class="col-md-12 mb-3">
             <div class="form-floating">
-                <label for="floatingTextarea">Comments</label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                <label for="editor">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here"
+                          id="editor"
                           name="description">{!!old('description') ?? $item->description!!}</textarea>
             </div>
             @error('description')

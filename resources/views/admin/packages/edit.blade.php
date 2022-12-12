@@ -20,12 +20,17 @@
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             $('#technologies').select2();
-        });
-        $(document).ready(function () {
             $('#platforms').select2();
+
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
 @endsection
