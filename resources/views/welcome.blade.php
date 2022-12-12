@@ -15,18 +15,18 @@
     <section class="p-3 my-5">
         <div class="container">
             <div class="row">
-                <h2 class="text-center mb-3">Platforms</h2>
-                <!-- Set up your HTML -->
+                <h2 class="text-center mb-3">Technologies</h2>
+                <!-- carousel -->
                 <div class="owl-carousel owl-theme">
-                    @foreach($platforms as $platform)
-                        <a href="{{route('filter', $platform->id)}}"
+                    @foreach($technologies as $technology)
+                        <a href="{{route('filter', $technology->id)}}"
                            class="d-flex flex-column text-decoration-none text-dark">
                             <div>
-                                <img src="{{asset($platform->image)}}" alt="logo" class="img-responsive img-thumbnail"
+                                <img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
                                      style="width: 250px; height: 250px">
                             </div>
                             <div class="mt-2">
-                                <h5 class="text-center">{{$platform->name}}</h5>
+                                <h5 class="text-center">{{$technology->name}}</h5>
                             </div>
                         </a>
                     @endforeach

@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Package;
-use App\Models\Platform;
+use App\Models\Technology;
 
 class FrontendController extends Controller
 {
     public function index()
     {
         $packages = Package::with('images', 'technologies', 'platforms')->get();
-        $platforms = Platform::latest('id')->get();
-        return view('welcome', compact('packages', 'platforms'));
+        $technologies = Technology::latest('id')->get();
+        return view('welcome', compact('packages', 'technologies'));
     }
 
     public function filter($filter = null)
     {
-        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('platforms.platform', 'platform_id', $filter)->get();
-        $platforms = Platform::latest('id')->get();
-        return view('welcome', compact('packages', 'platforms'));
+        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $filter)->get();
+        $technologies = Technology::latest('id')->get();
+        return view('welcome', compact('packages', 'technologies'));
     }
 
     public function package($id)
