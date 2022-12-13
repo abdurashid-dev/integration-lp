@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AbstractController extends Controller
 {
+    //comment
     protected $dir;
     protected $service;
 
