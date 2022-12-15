@@ -23,7 +23,7 @@
                            class="d-flex flex-column text-decoration-none text-dark">
                             <div>
                                 <img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
-                                     style="width: 250px; height: 250px">
+                                     style="width: 100px; height: 100px">
                             </div>
                             <div class="mt-2">
                                 <h5 class="text-center">{{$technology->name}}</h5>
@@ -81,15 +81,15 @@
                 autoplayHoverPause: true,
                 responsive: {
                     0: {
-                        items: 1,
-                        nav: false
-                    },
-                    600: {
                         items: 3,
                         nav: false
                     },
+                    600: {
+                        items: 6,
+                        nav: false
+                    },
                     1000: {
-                        items: 5,
+                        items: 10,
                         nav: false,
                         loop: false
                     }
