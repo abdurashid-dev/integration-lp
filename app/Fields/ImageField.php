@@ -8,18 +8,20 @@ class ImageField extends Fields
 
     public function getType()
     {
-        return 'file';
+        return 'image';
     }
 
     public function fill($object, $data)
     {
-        if (!is_null($object->image)) {
-            unlink($object->image);
+        if (isset($data[$this->getName()])) {
+            if (isset($object->image)) {
+                unlink($object->image);
+            }
+            $path = 'uploads';
+            $image = $data[$this->getName()];
+            $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($path . '/'), $imageName);
+            $object->{$this->getName()} = $path . '/' . $imageName;
         }
-        $path = 'uploads';
-        $image = $data[$this->getName()];
-        $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path($path . '/'), $imageName);
-        $object->{$this->getName()} = $path . '/' . $imageName;
     }
 }

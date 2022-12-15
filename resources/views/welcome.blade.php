@@ -23,7 +23,7 @@
                            class="d-flex flex-column text-decoration-none text-dark">
                             <div>
                                 <img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
-                                     style="width: 100px; height: 100px">
+                                     style="width: 90px; height: 90px">
                             </div>
                             <div class="mt-2">
                                 <h5 class="text-center">{{$technology->name}}</h5>
@@ -89,7 +89,7 @@
                         nav: false
                     },
                     1000: {
-                        items: 10,
+                        items: 11,
                         nav: false,
                         loop: false
                     }
