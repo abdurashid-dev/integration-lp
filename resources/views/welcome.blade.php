@@ -40,7 +40,7 @@
                         Technology: {{$tech->name}}
                     </p>
                 @endif
-                @foreach($packages as $package)
+                @forelse($packages as $package)
                     <div class="col-md-4 col-sm-12 my-2">
                         <div class="card">
                             <div class="card-body">
@@ -63,7 +63,9 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>No packages found :(</p>
+                @endforelse
             </div>
         </div>
     </section>
