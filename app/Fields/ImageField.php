@@ -15,7 +15,9 @@ class ImageField extends Fields
     {
         if (isset($data[$this->getName()])) {
             if (isset($object->image)) {
-                unlink($object->image);
+                if (file_exists('uploads/' . $object->image)) {
+                    unlink($object->image);
+                }
             }
             $path = 'uploads';
             $image = $data[$this->getName()];
