@@ -9,16 +9,17 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $packages = Package::with('images', 'technologies', 'platforms')->get();
-        $technologies = Technology::latest('id')->get();
+        $packages = Package::with('images', 'technologies', 'platforms')->orderBy('order')->get();
+        $technologies = Technology::orderBy('order')->get();
         return view('welcome', compact('packages', 'technologies'));
     }
 
     public function filter($filter = null)
     {
-        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $filter)->get();
-        $technologies = Technology::latest('id')->get();
-        return view('welcome', compact('packages', 'technologies'));
+        $tech = Technology::findOrFail($filter);
+        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $filter)->orderBy('order')->get();
+        $technologies = Technology::orderBy('order')->get();
+        return view('welcome', compact('packages', 'technologies', 'tech'));
     }
 
     public function package($id)

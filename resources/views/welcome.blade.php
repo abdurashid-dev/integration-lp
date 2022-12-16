@@ -35,6 +35,11 @@
             <hr class="my-5">
             <div class="row">
                 <h2 class="text-center m-2">Packages</h2>
+                @if(isset($tech))
+                    <p>
+                        Technology: {{$tech->name}}
+                    </p>
+                @endif
                 @foreach($packages as $package)
                     <div class="col-md-4 col-sm-12 my-2">
                         <div class="card">

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('includes/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     @livewireStyles
     @yield('styles')
+    @stack('styles')
 </head>
 
 <body class="hold-transition @if(Cookie::get('darkMode')) dark-mode @endif
@@ -184,6 +185,7 @@
     })
 </script>
 @yield('scripts')
+@stack('scripts')
 </body>
 
 </html>

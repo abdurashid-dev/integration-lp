@@ -9,7 +9,7 @@ class Package extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'price', 'type', 'link', 'status'];
+    protected $fillable = ['name', 'description', 'price', 'type', 'link', 'status', 'order'];
 
     public static function search($search)
     {
