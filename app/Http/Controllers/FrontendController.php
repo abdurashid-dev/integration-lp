@@ -18,7 +18,7 @@ class FrontendController extends Controller
         SEOMeta::setCanonical('https://integrat.uz');
 
         OpenGraph::setDescription('Integrat is ready integration and any other packages for web artisans!');
-        OpenGraph::setTitle('Home');
+        OpenGraph::setTitle('Integrat');
         OpenGraph::setUrl('https://integrat.uz');
         OpenGraph::addProperty('type', 'articles');
         OpenGraph::addImage(asset('seo-logo.jpg'));
