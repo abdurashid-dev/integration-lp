@@ -35,7 +35,12 @@
             <hr class="my-5">
             <div class="row">
                 <h2 class="text-center m-2">Packages</h2>
-                @foreach($packages as $package)
+                @if(isset($tech))
+                    <p>
+                        Technology: {{$tech->name}}
+                    </p>
+                @endif
+                @forelse($packages as $package)
                     <div class="col-md-4 col-sm-12 my-2">
                         <div class="card">
                             <div class="card-body">
@@ -58,7 +63,9 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>No packages found :(</p>
+                @endforelse
             </div>
         </div>
     </section>

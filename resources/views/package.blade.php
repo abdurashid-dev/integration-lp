@@ -14,7 +14,8 @@
                     <p>IMAGES</p>
                     @if(!is_null($package->images))
                         @foreach($package->images as $image)
-                            <img src="{{asset($image->image)}}" class="img-thumbnail img-responsive" alt="package" style="width: 400px">
+                            <img src="{{asset($image->image)}}" class="img-thumbnail img-responsive" alt="package"
+                                 style="width: 400px">
                         @endforeach
                     @endif
                 </div>
@@ -40,8 +41,8 @@
                             <th>Technologies:</th>
                             <td>
                                 @foreach($package->technologies as $technology)
-                                    <a href="{{$technology->technology->link}}"
-                                       title="{{$technology->technology->name}}">{{$technology->technology->name}}</a>
+                                    <a href="{{$technology->technology->link ?? '#'}}"
+                                       title="{{$technology->technology->name ?? 'null'}}">{{$technology->technology->name ?? 'null'}}</a>
                                     |
                                 @endforeach
                             </td>
