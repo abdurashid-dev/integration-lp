@@ -18,7 +18,7 @@
                 <tbody wire:sortable="updateOrder">
                 @forelse($packages as $package)
                     <tr wire:sortable.item="{{ $package->id }}" wire:key="package-{{ $package->id }}">
-                        <td class="align-middle"><i class="fa fa-arrows-alt"></i></td>
+                        <td class="align-middle" style="cursor: move"><i class="fa fa-arrows-alt"></i></td>
                         <td>{{$package->id}}</td>
                         <td>{{$package->name}}</td>
                         <td>{{$package->price}}</td>
