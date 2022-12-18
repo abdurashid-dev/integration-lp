@@ -1,0 +1,25 @@
+name: Deploy to server
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sklad-patron:
+    name: Deploy to integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: integrat.uz server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 89.108.98.137
+          username: root
+          key: ${{ secrets.SERVER_SECRET }}
+          port: 22
+          script: |
+            cd /var/www/www-root/data/www/integrat.uz/
+            git pull
+            composer install
+            php artisan optimize
+            php artisan migrate
+            php artisan optimize
+            npm run build
