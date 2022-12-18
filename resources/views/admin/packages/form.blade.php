@@ -61,6 +61,13 @@
             @enderror
         </div>
         <div class="col-md-12 mb-3">
+            <label for="imageInput2" class="form-label">Cover Image</label>
+            <input type="file" class="form-control" id="imageInput2" name="image">
+            @error('image')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mb-3">
             <div class="form-floating">
                 <label for="editor">Comments</label>
                 <textarea class="form-control" placeholder="Leave a comment here"

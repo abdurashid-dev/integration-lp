@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('welcome');
 Route::get('/filter/{filter?}', [\App\Http\Controllers\FrontendController::class, 'filter'])->name('filter');
-Route::get('/package/{id}', [\App\Http\Controllers\FrontendController::class, 'package'])->name('package');
+Route::get('/package/{slug}', [\App\Http\Controllers\FrontendController::class, 'package'])->name('package');
 
 //Jetstream
 Route::middleware([

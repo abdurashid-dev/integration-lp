@@ -9,7 +9,7 @@ class Technology extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'link', 'order'];
+    protected $fillable = ['name', 'link', 'order', 'slug'];
 
     public static function search($search)
     {
