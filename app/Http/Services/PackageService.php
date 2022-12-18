@@ -8,6 +8,7 @@ use App\Models\PackagePlatform;
 use App\Models\PackageTechnology;
 use App\Models\Platform;
 use App\Models\Technology;
+use Illuminate\Support\Str;
 
 class PackageService extends AbstractService
 {
@@ -28,6 +29,7 @@ class PackageService extends AbstractService
 
     public function store(array $data)
     {
+        $data['slug'] = Str::slug($data['name']);
         $model = $this->model::create($data);
         foreach ($data['technologies'] as $technology) {
             PackageTechnology::create([
@@ -59,8 +61,8 @@ class PackageService extends AbstractService
 
     public function update($data, $id)
     {
-//        dd($data);
         $model = $this->show($id);
+        $data['slug'] = Str::slug($data['name']);
         $model->update($data);
         PackageTechnology::where('package_id', $id)->delete();
         foreach ($data['technologies'] as $technology) {

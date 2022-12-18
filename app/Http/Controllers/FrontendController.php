@@ -33,7 +33,7 @@ class FrontendController extends Controller
 
     public function filter($filter = null)
     {
-        $tech = Technology::where('slug', $filter)->first();
+        $tech = Technology::where('slug', $filter)->firstOrFail();
         $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $tech->id)->orderBy('order')->get();
         $technologies = Technology::orderBy('order')->get();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Fields\ImageField;
+use App\Fields\SlugField;
 use App\Fields\TextField;
 use App\Models\PackageTechnology;
 use App\Models\Technology;
@@ -16,7 +17,8 @@ class TechnologyService extends AbstractService
         return [
             TextField::make('name')->setRules('required'),
             TextField::make('link')->setRules('sometimes'),
-            ImageField::make('image')
+            ImageField::make('image'),
+            SlugField::make('slug')
         ];
     }
 
