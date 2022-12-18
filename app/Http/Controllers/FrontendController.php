@@ -58,17 +58,17 @@ class FrontendController extends Controller
         $package = Package::with('images', 'technologies', 'platforms')->where('slug', $slug)->first();
 
         SEOMeta::setTitle($package->name);
-        SEOMeta::setDescription(Str::limit($package->description, 250));
+        SEOMeta::setDescription(strip_tags(Str::limit($package->description, 250)));
         SEOMeta::setCanonical('https://integrat.uz/package/' . $slug);
 
-        OpenGraph::setDescription(Str::limit($package->description, 250));
+        OpenGraph::setDescription(strip_tags(Str::limit($package->description, 250)));
         OpenGraph::setTitle($package->name);
         OpenGraph::setUrl('https://integrat.uz');
         OpenGraph::addProperty('type', 'articles');
         OpenGraph::addImage(asset('seo-logo.jpg'));
 
         JsonLd::setTitle($package->name);
-        JsonLd::setDescription(Str::limit($package->description, 250));
+        JsonLd::setDescription(strip_tags(Str::limit($package->description, 250)));
 
         return view('package', compact('package'));
     }
