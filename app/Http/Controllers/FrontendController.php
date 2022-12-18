@@ -39,7 +39,7 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle($tech->name . ' - packages');
         SEOMeta::setDescription($tech->name . ' - packages for web artisans!');
-        SEOMeta::setCanonical('https://integrat.uz/filter=.' . $filter . '.');
+        SEOMeta::setCanonical('https://integrat.uz/filter/' . $filter);
 
         OpenGraph::setDescription($tech->name . ' - packages for web artisans!');
         OpenGraph::setTitle($tech->name . ' - packages');
@@ -59,7 +59,7 @@ class FrontendController extends Controller
 
         SEOMeta::setTitle($package->name);
         SEOMeta::setDescription(Str::limit($package->description, 250));
-        SEOMeta::setCanonical('https://integrat.uz/package/.' . $slug . '.');
+        SEOMeta::setCanonical('https://integrat.uz/package/' . $slug);
 
         OpenGraph::setDescription(Str::limit($package->description, 250));
         OpenGraph::setTitle($package->name);
