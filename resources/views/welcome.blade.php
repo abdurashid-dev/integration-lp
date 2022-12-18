@@ -43,6 +43,7 @@
                 @forelse($packages as $package)
                     <div class="col-md-4 col-sm-12 my-2">
                         <div class="card">
+                            <img src="{{asset($package->image)}}" class="card-img-top img-sm img-responsive" style="height: 150px; object-fit: cover" alt="{{$package->name}}">
                             <div class="card-body">
                                 <h5 class="card-title mb-3">{{$package->name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Platforms:
