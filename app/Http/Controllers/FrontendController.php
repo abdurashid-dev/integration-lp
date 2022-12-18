@@ -65,7 +65,7 @@ class FrontendController extends Controller
         OpenGraph::setTitle($package->name);
         OpenGraph::setUrl('https://integrat.uz');
         OpenGraph::addProperty('type', 'articles');
-        OpenGraph::addImage(asset('seo-logo.jpg'));
+        OpenGraph::addImage(asset($package->image));
 
         JsonLd::setTitle($package->name);
         JsonLd::setDescription(strip_tags(Str::limit($package->description, 250)));
