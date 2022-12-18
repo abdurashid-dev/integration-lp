@@ -19,7 +19,7 @@
                 <!-- carousel -->
                 <div class="owl-carousel owl-theme">
                     @foreach($technologies as $technology)
-                        <a href="{{route('filter', $technology->id)}}"
+                        <a href="{{route('filter', $technology->slug)}}"
                            class="d-flex flex-column text-decoration-none text-dark">
                             <div>
                                 <img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
@@ -59,7 +59,7 @@
                                 <span class="mx-2"><i class="fa-solid fa-download"></i>: 7500</span>
                                 <span class="mx-2"><i class="fa-solid fa-star"></i>: 3000</span>
                                 <span class="mx-2"><i class="fa-solid fa-coins"></i>: {{number_format($package->price, 0, '', ' ')}} uzs</span>
-                                <span><a href="{{route('package', $package->id)}}">More</a></span>
+                                <span><a href="{{route('package', $package->slug)}}">More</a></span>
                             </div>
                         </div>
                     </div>

@@ -33,8 +33,8 @@ class FrontendController extends Controller
 
     public function filter($filter = null)
     {
-        $tech = Technology::findOrFail($filter);
-        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $filter)->orderBy('order')->get();
+        $tech = Technology::where('slug', $filter)->first();
+        $packages = Package::with('images', 'technologies', 'platforms')->whereRelation('technologies.technology', 'technology_id', $tech->id)->orderBy('order')->get();
         $technologies = Technology::orderBy('order')->get();
 
         SEOMeta::setTitle($tech->name . ' - packages');
@@ -53,13 +53,13 @@ class FrontendController extends Controller
         return view('welcome', compact('packages', 'technologies', 'tech'));
     }
 
-    public function package($id)
+    public function package($slug)
     {
-        $package = Package::with('images', 'technologies', 'platforms')->where('id', $id)->first();
+        $package = Package::with('images', 'technologies', 'platforms')->where('slug', $slug)->first();
 
         SEOMeta::setTitle($package->name);
         SEOMeta::setDescription(Str::limit($package->description, 250));
-        SEOMeta::setCanonical('https://integrat.uz/package/.' . $id . '.');
+        SEOMeta::setCanonical('https://integrat.uz/package/.' . $slug . '.');
 
         OpenGraph::setDescription(Str::limit($package->description, 250));
         OpenGraph::setTitle($package->name);
