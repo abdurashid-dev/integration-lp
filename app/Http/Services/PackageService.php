@@ -16,7 +16,7 @@ class PackageService extends AbstractService
 
     public function show($id)
     {
-        return $this->model::where('id', $id)->with('technologies', 'platforms', 'images')->first();
+        return $this->model::where('id', $id)->with('technologies', 'platforms', 'images')->firstOrFail();
     }
 
     public function create()
@@ -30,6 +30,7 @@ class PackageService extends AbstractService
     public function store(array $data)
     {
         $data['slug'] = Str::slug($data['name']);
+        $data['image'] = $this->imageUpload($data['image'], false);
         $model = $this->model::create($data);
         foreach ($data['technologies'] as $technology) {
             PackageTechnology::create([
@@ -44,18 +45,7 @@ class PackageService extends AbstractService
             ]);
         }
         if (isset($data['images'])) {
-            $path = 'uploads';
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-            foreach ($data['images'] as $image) {
-                $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path($path . '/'), $imageName);
-                PackageImage::create([
-                    'package_id' => $model->id,
-                    'image' => $path . '/' . $imageName
-                ]);
-            }
+            $this->imagesUpload($model, $data['images']);
         }
     }
 
@@ -63,7 +53,11 @@ class PackageService extends AbstractService
     {
         $model = $this->show($id);
         $data['slug'] = Str::slug($data['name']);
+        $data['image'] = $this->imageUpload($data['image'], false);
         $model->update($data);
+        if (isset($data['images'])) {
+            $this->imagesUpload($model, $data['images']);
+        }
         PackageTechnology::where('package_id', $id)->delete();
         foreach ($data['technologies'] as $technology) {
             PackageTechnology::create([
@@ -77,26 +71,6 @@ class PackageService extends AbstractService
                 'package_id' => $model->id,
                 'platform_id' => $platform
             ]);
-        }
-        if (isset($data['images'])) {
-            $path = 'uploads';
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-            foreach ($model->images as $image) {
-                if (file_exists($image->image)) {
-                    unlink($image->image);
-                }
-            }
-            PackageImage::where('package_id', $id)->delete();
-            foreach ($data['images'] as $image) {
-                $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path($path . '/'), $imageName);
-                PackageImage::create([
-                    'package_id' => $model->id,
-                    'image' => $path . '/' . $imageName
-                ]);
-            }
         }
     }
 
@@ -113,6 +87,10 @@ class PackageService extends AbstractService
         $item = $this->show($id);
         PackagePlatform::where('package_id', $id)->delete();
         PackageTechnology::where('package_id', $id)->delete();
+
+        if (file_exists($item->image)) {
+            unlink($item->image);
+        }
         foreach ($item->images as $image) {
             if (file_exists($image->image)) {
                 unlink($image->image);
@@ -120,5 +98,60 @@ class PackageService extends AbstractService
         }
         PackageImage::where('package_id', $id)->delete();
         $item->delete();
+    }
+
+    public function imageUpload($data, $update): string
+    {
+        if ($update) {
+            if (file_exists($data)) {
+                unlink($data);
+            }
+        } else {
+            if (file_exists('uploads/' . $data)) {
+                unlink($data);
+            }
+        }
+
+        return $this->getPathStr($data);
+    }
+
+    public function imagesUpload($model, $images)
+    {
+        $path = 'uploads';
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        foreach ($model->images as $image) {
+            if (file_exists($image->image)) {
+                unlink($image->image);
+            }
+        }
+        PackageImage::where('package_id', $model->id)->delete();
+        foreach ($images as $image) {
+            $output = $this->getPathStr($image);
+            PackageImage::create([
+                'package_id' => $model->id,
+                'image' => $output
+            ]);
+        }
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function getPathStr($data)
+    {
+        $image = imagecreatefromstring(file_get_contents($data));
+        ob_start();
+        imagejpeg($image, NULL, 100);
+        $cont = ob_get_contents();
+        ob_end_clean();
+        imagedestroy($image);
+        $content = imagecreatefromstring($cont);
+        $output = 'uploads/' . md5(rand(1000, 9999) . microtime()) . '.webp';
+        imagewebp($content, $output);
+        imagedestroy($content);
+        return $output;
     }
 }

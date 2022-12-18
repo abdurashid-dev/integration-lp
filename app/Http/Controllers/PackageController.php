@@ -38,6 +38,7 @@ class PackageController extends AbstractController
             'images' => 'sometimes',
             'technologies' => 'required',
             'platforms' => 'required',
+            'image' => 'required'
         ]);
         $this->service->store($data);
         return redirect()->route('admin.packages.index')->with('success', 'Created!');
@@ -61,6 +62,7 @@ class PackageController extends AbstractController
             'images' => 'sometimes',
             'technologies' => 'required',
             'platforms' => 'required',
+            'image' => 'sometimes'
         ]);
         $this->service->update($data, $id);
         return redirect()->route('admin.packages.index')->with('success', 'Updated!');
