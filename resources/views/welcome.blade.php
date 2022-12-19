@@ -1,7 +1,4 @@
 @extends('layouts.frontend')
-@section('title')
-    Integrat
-@endsection
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
           integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
@@ -23,7 +20,7 @@
                            class="d-flex flex-column text-decoration-none text-dark">
                             <div>
                                 <img src="{{asset($technology->image)}}" alt="logo" class="img-responsive img-thumbnail"
-                                     style="width: 90px; height: 90px">
+                                     style="width: 80px; height: 80px; margin: 0 auto">
                             </div>
                             <div class="mt-2">
                                 <h5 class="text-center">{{$technology->name}}</h5>
