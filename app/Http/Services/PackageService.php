@@ -54,20 +54,13 @@ class PackageService extends AbstractService
         $model = $this->show($id);
         $data['slug'] = Str::slug($data['name']);
         if (!empty($data['image'])) {
-            if (file_exists($data['image'])) {
+            if (file_exists('uploads/' . $data['image'])) {
                 unlink($data['image']);
             }
-            $image = imagecreatefromstring(file_get_contents($data['image']));
-            ob_start();
-            imagejpeg($image, NULL, 100);
-            $cont = ob_get_contents();
-            ob_end_clean();
-            imagedestroy($image);
-            $content = imagecreatefromstring($cont);
-            $output = 'uploads/' . md5(rand(1000, 9999) . microtime()) . '.webp';
-            imagewebp($content, $output);
-            imagedestroy($content);
-            $data['image'] = $output;
+            $image = $data['image'];
+            $imageName = md5(rand(1000, 9999) . microtime()) . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/'), $imageName);
+            $data['image'] = 'uploads/' . $imageName;
         }
         $model->update($data);
         if (isset($data['images'])) {
