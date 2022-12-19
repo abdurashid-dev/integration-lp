@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th>Authors:</th>
-                            <td>John Doe</td>
+                            <td><a href="https://blaze.uz">Blaze Team</a></td>
                         </tr>
                         <tr>
                             <th>Platforms:</th>

@@ -53,7 +53,22 @@ class PackageService extends AbstractService
     {
         $model = $this->show($id);
         $data['slug'] = Str::slug($data['name']);
-        $data['image'] = $this->imageUpload($data['image'], false);
+        if (!empty($data['image'])) {
+            if (file_exists($data['image'])) {
+                unlink($data['image']);
+            }
+            $image = imagecreatefromstring(file_get_contents($data['image']));
+            ob_start();
+            imagejpeg($image, NULL, 100);
+            $cont = ob_get_contents();
+            ob_end_clean();
+            imagedestroy($image);
+            $content = imagecreatefromstring($cont);
+            $output = 'uploads/' . md5(rand(1000, 9999) . microtime()) . '.webp';
+            imagewebp($content, $output);
+            imagedestroy($content);
+            $data['image'] = $output;
+        }
         $model->update($data);
         if (isset($data['images'])) {
             $this->imagesUpload($model, $data['images']);
@@ -100,7 +115,7 @@ class PackageService extends AbstractService
         $item->delete();
     }
 
-    public function imageUpload($data, $update): string
+    public function imageUpload($data, $update)
     {
         if ($update) {
             if (file_exists($data)) {
