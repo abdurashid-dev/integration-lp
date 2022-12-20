@@ -38,17 +38,17 @@ class FrontendController extends Controller
         $technologies = Technology::orderBy('order')->get();
 
         SEOMeta::setTitle($tech->name . ' - packages');
-        SEOMeta::setDescription($tech->name . ' - packages for web artisans!');
+        SEOMeta::setDescription($tech->name . ' - integration packages for web artisans!');
         SEOMeta::setCanonical('https://integrat.uz/filter/' . $filter);
 
-        OpenGraph::setDescription($tech->name . ' - packages for web artisans!');
+        OpenGraph::setDescription($tech->name . ' - integration packages for web artisans!');
         OpenGraph::setTitle($tech->name . ' - packages');
         OpenGraph::setUrl('https://integrat.uz');
         OpenGraph::addProperty('type', 'articles');
         OpenGraph::addImage(asset($tech->image));
 
         JsonLd::setTitle($tech->name . ' - packages');
-        JsonLd::setDescription($tech->name . ' - packages for web artisans!');
+        JsonLd::setDescription($tech->name . ' - integration packages for web artisans!');
 
         return view('welcome', compact('packages', 'technologies', 'tech'));
     }
